@@ -1,0 +1,32 @@
+{
+	"name": "@diba1013/stylelint-config",
+	"version": "0.1.0",
+	"description": "The missing stylelint config for personal use",
+	"keywords": [],
+	"license": "MIT",
+	"author": "diba1013",
+	"type": "module",
+	"files": [
+		"src"
+	],
+	"exports": {
+		".": "./src/recommended.cjs",
+		"./*": "./src/*.cjs"
+	},
+	"main": "./src/recommended.cjs",
+	"scripts": {
+		"pack": "pnpm pack"
+	},
+	"peerDependencies": {
+		"stylelint": "14.x"
+	},
+	"dependencies": {
+		"postcss": "^8.4.12",
+		"postcss-html": "^1.3.0",
+		"stylelint-config-standard-scss": "^3.0.0",
+		"stylelint-config-standard-vue": "^1.0.0"
+	},
+	"devDependencies": {
+		"stylelint": "14.x"
+	}
+}
