@@ -16,6 +16,11 @@ module.exports = {
 			rules,
 		},
 		{
+			files: ["*.yaml", "*.yml"],
+			extends: [BASE_PLUGIN, "./config/yaml.cjs", PRETTIER_PLUGIN],
+			rules,
+		},
+		{
 			files: ["*.ts"],
 			extends: [BASE_PLUGIN, "./config/ts.cjs", PRETTIER_PLUGIN],
 			rules,

@@ -1,7 +1,7 @@
-const { PRETTIER_PLUGIN, JSON_PLUGIN, JSON_PLUGIN_PRETTIER } = require("../plugins.constants.cjs");
+const { JSON_PLUGIN, JSON_PLUGIN_PRETTIER } = require("../plugins.constants.cjs");
 
 module.exports = {
-	extends: [JSON_PLUGIN, JSON_PLUGIN_PRETTIER, PRETTIER_PLUGIN],
+	extends: [JSON_PLUGIN, JSON_PLUGIN_PRETTIER],
 	parser: "jsonc-eslint-parser",
 	overrides: [
 		{

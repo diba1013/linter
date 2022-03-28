@@ -7,8 +7,8 @@
 	"type": "module",
 	"scripts": {
 		"prepare": "husky install",
-		"lint": "eslint --ext .cjs,.json .",
-		"lint:fix": "eslint --ext .cjs,.json ."
+		"lint": "eslint",
+		"lint:fix": "eslint --fix"
 	},
 	"workspaces": [
 		"packages/**"

@@ -9,4 +9,6 @@ module.exports = {
 	TYPESCRIPT_PLUGIN: "plugin:@typescript-eslint/recommended",
 	UNICORN_PLUGIN: "plugin:unicorn/recommended",
 	VUE_PLUGIN: "plugin:vue/vue3-recommended",
+	YAML_PLUGIN: "plugin:yml/standard",
+	YAML_PLUGIN_PRETTIER: "plugin:yml/prettier",
 };
