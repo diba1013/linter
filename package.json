@@ -1,6 +1,6 @@
 {
-	"name": "@diba1013/linter-config",
-	"description": "The missing linter config for personal use",
+	"name": "@diba1013/config",
+	"description": "The missing linter/formatter config for personal use",
 	"private": true,
 	"license": "MIT",
 	"author": "diba1013",
