@@ -3,6 +3,10 @@
 	"description": "The missing linter/formatter config for personal use",
 	"private": true,
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/diba1013/config.git"
+	},
 	"author": "diba1013",
 	"type": "module",
 	"scripts": {
