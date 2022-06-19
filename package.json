@@ -1,5 +1,6 @@
 {
 	"name": "@diba1013/config",
+	"version": "0.1.0",
 	"description": "The missing linter/formatter config for personal use",
 	"private": true,
 	"license": "MIT",
@@ -12,7 +13,8 @@
 	"scripts": {
 		"prepare": "husky install",
 		"lint": "eslint",
-		"lint:fix": "eslint --fix"
+		"lint:fix": "eslint --fix",
+		"change": "pnpm version --workspaces ${npm_config_tag} && git add **/package.json; pnpm version --include-workspace-root --force ${npm_config_tag}"
 	},
 	"workspaces": [
 		"packages/**"
