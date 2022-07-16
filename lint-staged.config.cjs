@@ -1,3 +1,3 @@
 module.exports = {
-	"*.{js,cjs,ts}": "pnpm lint:fix -- --cache",
+	"*.{js,cjs,ts}": "pnpx eslint --fix --cache",
 };
