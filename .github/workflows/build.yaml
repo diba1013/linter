@@ -12,6 +12,8 @@ jobs:
         node_version:
           - 16
           - 18
+    env:
+      NPM_GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     name: "Build ${{ matrix.node_version }}"
     steps:
@@ -30,8 +32,6 @@ jobs:
           cache: pnpm
 
       - name: Install
-        env:
-          NPM_GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm install --frozen-lockfile
 
