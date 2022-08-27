@@ -25,27 +25,27 @@
 	"peerDependencies": {
 		"eslint": "8.x",
 		"prettier": "2.x",
-		"typescript": "4.7.x"
+		"typescript": "4.8.x"
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.30.6",
-		"@typescript-eslint/parser": "^5.30.6",
+		"@typescript-eslint/eslint-plugin": "^5.35.1",
+		"@typescript-eslint/parser": "^5.35.1",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-import-resolver-typescript": "^3.2.6",
+		"eslint-import-resolver-typescript": "^3.5.0",
 		"eslint-plugin-import": "^2.26.0",
-		"eslint-plugin-jsonc": "^2.3.1",
+		"eslint-plugin-jsonc": "^2.4.0",
 		"eslint-plugin-prettier": "^4.2.1",
-		"eslint-plugin-promise": "^6.0.0",
-		"eslint-plugin-sonarjs": "^0.13.0",
-		"eslint-plugin-unicorn": "^43.0.1",
-		"eslint-plugin-vue": "^9.2.0",
-		"eslint-plugin-yml": "^1.0.0",
+		"eslint-plugin-promise": "^6.0.1",
+		"eslint-plugin-sonarjs": "^0.15.0",
+		"eslint-plugin-unicorn": "^43.0.2",
+		"eslint-plugin-vue": "^9.4.0",
+		"eslint-plugin-yml": "^1.1.0",
 		"jsonc-eslint-parser": "^2.1.0",
 		"vue-eslint-parser": "^9.0.3"
 	},
 	"devDependencies": {
 		"eslint": "8.x",
 		"prettier": "2.x",
-		"typescript": "4.7.x"
+		"typescript": "4.8.x"
 	}
 }
