@@ -23,9 +23,11 @@
 		"pack": "pnpm pack"
 	},
 	"peerDependencies": {
-		"prettier": "2.x"
+		"prettier": "2.x",
+		"prettier-plugin-tailwindcss": "0.x"
 	},
 	"devDependencies": {
-		"prettier": "^2.8.3"
+		"prettier": "^2.8.7",
+		"prettier-plugin-tailwindcss": "^0.2.7"
 	}
 }

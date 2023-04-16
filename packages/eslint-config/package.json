@@ -15,37 +15,40 @@
 		"src"
 	],
 	"exports": {
-		".": "./src/recommended.cjs",
-		"./*": "./src/*.cjs"
+		".": "./src/recommended.js",
+		"./*": "./src/*.js"
 	},
-	"main": "./src/recommended.cjs",
+	"main": "./src/recommended.js",
 	"scripts": {
 		"pack": "pnpm pack"
 	},
 	"peerDependencies": {
 		"eslint": "8.x",
 		"prettier": "2.x",
-		"typescript": "4.x"
+		"typescript": "5.x"
 	},
 	"dependencies": {
-		"@typescript-eslint/eslint-plugin": "^5.48.1",
-		"@typescript-eslint/parser": "^5.48.1",
-		"eslint-config-prettier": "^8.6.0",
-		"eslint-import-resolver-typescript": "^3.5.3",
-		"eslint-plugin-import": "^2.27.4",
-		"eslint-plugin-jsonc": "^2.6.0",
+		"@eslint/js": "^8.38.0",
+		"@typescript-eslint/eslint-plugin": "^5.58.0",
+		"@typescript-eslint/parser": "^5.58.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-import-resolver-typescript": "^3.5.5",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-jsonc": "^2.7.0",
 		"eslint-plugin-prettier": "^4.2.1",
 		"eslint-plugin-promise": "^6.1.1",
-		"eslint-plugin-sonarjs": "^0.18.0",
-		"eslint-plugin-unicorn": "^45.0.2",
-		"eslint-plugin-vue": "^9.9.0",
-		"eslint-plugin-yml": "^1.4.0",
-		"jsonc-eslint-parser": "^2.1.0",
-		"vue-eslint-parser": "^9.1.0"
+		"eslint-plugin-sonarjs": "^0.19.0",
+		"eslint-plugin-unicorn": "^46.0.0",
+		"eslint-plugin-vue": "^9.10.0",
+		"eslint-plugin-yml": "^1.5.0",
+		"globals": "^13.20.0",
+		"jsonc-eslint-parser": "^2.2.0",
+		"vue-eslint-parser": "^9.1.1",
+		"yaml-eslint-parser": "^1.2.0"
 	},
 	"devDependencies": {
-		"eslint": "^8.31.0",
-		"prettier": "^2.8.3",
-		"typescript": "^4.9.4"
+		"eslint": "^8.38.0",
+		"prettier": "^2.8.7",
+		"typescript": "^5.0.4"
 	}
 }
