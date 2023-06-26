@@ -9,6 +9,10 @@
 		"url": "git://github.com/diba1013/config.git"
 	},
 	"author": "diba1013",
+	"engines": {
+		"node": ">=20",
+		"pnpm": ">=8"
+	},
 	"type": "module",
 	"scripts": {
 		"prepare": "husky install",

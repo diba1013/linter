@@ -61,6 +61,7 @@ export function defineConfig({ typescript: tsconfig = true } = {}) {
 							"repository",
 							"funding",
 							"author",
+							"engines",
 							"type",
 							"files",
 							"exports",
