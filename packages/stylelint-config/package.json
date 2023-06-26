@@ -23,14 +23,13 @@
 		"pack": "pnpm pack"
 	},
 	"peerDependencies": {
-		"postcss-html": "^1.x",
 		"stylelint": "15.x"
 	},
 	"dependencies": {
-		"stylelint-config-standard": "^32.0.0"
+		"postcss-html": "^1.5.0",
+		"stylelint-config-standard": "^33.0.0"
 	},
 	"devDependencies": {
-		"postcss-html": "^1.5.0",
-		"stylelint": "^15.4.0"
+		"stylelint": "^15.9.0"
 	}
 }
