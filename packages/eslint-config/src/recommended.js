@@ -17,8 +17,9 @@ import yamlParser from "yaml-eslint-parser";
  * Defines the custom configuration options for eslint config options.
  *
  * @typedef {Object} CustomLinterOptions
- * @property {'node' | 'browser'} [environment]
- * @property {boolean} [typescript]
+ * @property {'node' | 'browser'} [environment] Configure the environment for the project
+ * @property {boolean} [typescript] Configure if the root typescript config should be read
+ * @property {string[]} [ignores] Configure the global ignore patterns
  */
 
 /**
@@ -27,7 +28,10 @@ import yamlParser from "yaml-eslint-parser";
  * @param {CustomLinterOptions} options The options to configure the linter settings.
  * @returns {import("eslint").Linter.FlatConfig[]} The configured linter configurations.
  */
-export function defineConfig({ typescript: tsconfig = true } = {}) {
+export function defineConfig({
+	typescript: tsconfig = true,
+	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
+} = {}) {
 	return [
 		// JSON
 		{
@@ -241,6 +245,10 @@ export function defineConfig({ typescript: tsconfig = true } = {}) {
 				"arrow-body-style": "off",
 				"prefer-arrow-callback": "off",
 			},
+		},
+		// Configure global ignores
+		{
+			ignores,
 		},
 	];
 }

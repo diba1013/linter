@@ -16,7 +16,7 @@
 	"type": "module",
 	"scripts": {
 		"prepare": "husky install",
-		"lint": "eslint",
+		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
 		"change": "pnpm changeset version; git add **/package.json ./.changeset/*.md; pnpm version --include-workspace-root --force ${npm_config_tag}"
 	},

@@ -1,6 +1,0 @@
-.vscode
-node_modules
-pnpm-lock.yaml
-
-# Specifically include some hidden folders
-!.github
