@@ -1,6 +1,6 @@
 {
 	"name": "@diba1013/eslint-config",
-	"version": "0.6.3",
+	"version": "0.6.4",
 	"description": "The missing eslint config for personal use",
 	"keywords": [],
 	"license": "MIT",
