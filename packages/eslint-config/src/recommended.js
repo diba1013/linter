@@ -261,6 +261,7 @@ export function defineConfig({
 				"prettier/prettier": "warn",
 				"arrow-body-style": "off",
 				"prefer-arrow-callback": "off",
+				"no-mixed-spaces-and-tabs": "off",
 			},
 		},
 		// Configure global ignores
