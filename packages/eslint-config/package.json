@@ -24,7 +24,7 @@
 	},
 	"peerDependencies": {
 		"eslint": "8.x",
-		"prettier": "2.x"
+		"prettier": "3.x"
 	},
 	"dependencies": {
 		"@eslint/js": "^8.44.0",
