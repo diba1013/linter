@@ -208,16 +208,10 @@ export function defineConfig({
 				},
 			},
 			rules: {
-				...typescript.configs["eslint-recommended"].rules,
+				...typescript.configs["eslint-recommended"].overrides[0].rules,
 				...typescript.configs.recommended.rules,
 				...typescript.configs["recommended-requiring-type-checking"]
 					.rules,
-
-				/**
-				 * TypeScript compilation already ensures that named imports exist in the referenced module
-				 * https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/named.md
-				 */
-				"import/named": "off",
 			},
 		},
 		{
