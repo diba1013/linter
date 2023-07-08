@@ -107,7 +107,7 @@ export function defineConfig({
 		},
 		// JavaScript
 		{
-			files: ["**/*.{js,cjs,mjs,ts,vue}"],
+			files: ["**/*.{js,jsx,cjs,mjs,ts,tsx,vue}"],
 			plugins: {
 				unicorn,
 				promise,
@@ -196,7 +196,7 @@ export function defineConfig({
 			},
 		},
 		{
-			files: ["**/*.{ts,vue}"],
+			files: ["**/*.{ts,tsx,cts,mts,vue}"],
 			plugins: {
 				"@typescript-eslint": typescript,
 			},
