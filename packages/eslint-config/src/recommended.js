@@ -18,7 +18,7 @@ import yamlParser from "yaml-eslint-parser";
  *
  * @typedef {Object} CustomLinterOptions
  * @property {'node' | 'browser'} [environment] Configure the environment for the project
- * @property {boolean} [typescript] Configure if the root typescript config should be read
+ * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
  */
 
@@ -29,7 +29,7 @@ import yamlParser from "yaml-eslint-parser";
  * @returns {import("eslint").Linter.FlatConfig[]} The configured linter configurations.
  */
 export function defineConfig({
-	typescript: tsconfig = true,
+	typescript: tsconfig = "tsconfig.json",
 	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
 } = {}) {
 	return [
@@ -139,7 +139,8 @@ export function defineConfig({
 					"warn",
 					{
 						type: "natural",
-						"read-tsconfig": tsconfig,
+						"read-tsconfig":
+							typeof tsconfig !== "boolean" || tsconfig,
 						groups: [
 							[
 								"internal-type",
@@ -204,7 +205,7 @@ export function defineConfig({
 				parser: typescriptParser,
 				parserOptions: {
 					tsconfigRootDir: process.cwd(),
-					project: ["tsconfig.json"],
+					project: tsconfig,
 				},
 			},
 			rules: {
