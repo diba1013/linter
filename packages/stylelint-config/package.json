@@ -30,6 +30,6 @@
 		"stylelint-config-standard": "^34.0.0"
 	},
 	"devDependencies": {
-		"stylelint": "^15.10.1"
+		"stylelint": "^15.10.3"
 	}
 }
