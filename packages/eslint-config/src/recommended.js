@@ -1,3 +1,5 @@
+import path from "node:path";
+import url from "node:url";
 import js from "@eslint/js";
 import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
@@ -32,6 +34,8 @@ export function defineConfig({
 	typescript: tsconfig = "tsconfig.json",
 	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
 } = {}) {
+	const $dirname = path.dirname(url.fileURLToPath(import.meta.url));
+
 	return [
 		// JSON
 		{
@@ -139,8 +143,6 @@ export function defineConfig({
 					"warn",
 					{
 						type: "natural",
-						"read-tsconfig":
-							typeof tsconfig !== "boolean" || tsconfig,
 						groups: [
 							[
 								"internal-type",
@@ -204,7 +206,7 @@ export function defineConfig({
 			languageOptions: {
 				parser: typescriptParser,
 				parserOptions: {
-					tsconfigRootDir: process.cwd(),
+					tsconfigRootDir: $dirname,
 					project: tsconfig,
 				},
 			},
