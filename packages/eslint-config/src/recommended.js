@@ -1,5 +1,3 @@
-import path from "node:path";
-import url from "node:url";
 import js from "@eslint/js";
 import typescript from "@typescript-eslint/eslint-plugin";
 import typescriptParser from "@typescript-eslint/parser";
@@ -19,6 +17,7 @@ import yamlParser from "yaml-eslint-parser";
  * Defines the custom configuration options for eslint config options.
  *
  * @typedef {Object} CustomLinterOptions
+ * @property {string} [root] The root of the eslint configuration
  * @property {'node' | 'browser'} [environment] Configure the environment for the project
  * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
@@ -31,11 +30,10 @@ import yamlParser from "yaml-eslint-parser";
  * @returns {import("eslint").Linter.FlatConfig[]} The configured linter configurations.
  */
 export function defineConfig({
+	root = process.cwd(),
 	typescript: tsconfig = "tsconfig.json",
 	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
 } = {}) {
-	const $dirname = path.dirname(url.fileURLToPath(import.meta.url));
-
 	return [
 		// JSON
 		{
@@ -206,7 +204,7 @@ export function defineConfig({
 			languageOptions: {
 				parser: typescriptParser,
 				parserOptions: {
-					tsconfigRootDir: $dirname,
+					tsconfigRootDir: root,
 					project: tsconfig,
 				},
 			},
