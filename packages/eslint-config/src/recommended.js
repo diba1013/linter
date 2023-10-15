@@ -21,6 +21,7 @@ import yamlParser from "yaml-eslint-parser";
  * @property {'node' | 'browser'} [environment] Configure the environment for the project
  * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
+ * @property {import("eslint").Linter.FlatConfig[]} [configs] Additional configuration allowing to overwrite almost anything
  */
 
 /**
@@ -33,6 +34,7 @@ export function defineConfig({
 	root = process.cwd(),
 	typescript: tsconfig = "tsconfig.json",
 	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
+	configs = [],
 } = {}) {
 	return [
 		// JSON
@@ -259,6 +261,8 @@ export function defineConfig({
 				"no-mixed-spaces-and-tabs": "off",
 			},
 		},
+		// Allow overwrites
+		...configs,
 		// Configure global ignores
 		{
 			ignores,
