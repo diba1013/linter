@@ -250,21 +250,19 @@ export function defineConfig({
 		{
 			files: ["**/{components,pages}/*.tsx"],
 			rules: {
-				rules: {
-					/**
-					 * Enforce different naming strategy for vue files
-					 * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/filename-case.md
-					 */
-					"unicorn/filename-case": [
-						"error",
-						{
-							cases: {
-								pascalCase: true,
-								kebabCase: true,
-							},
+				/**
+				 * Enforce different naming strategy for vue files
+				 * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/filename-case.md
+				 */
+				"unicorn/filename-case": [
+					"error",
+					{
+						cases: {
+							pascalCase: true,
+							kebabCase: true,
 						},
-					],
-				},
+					},
+				],
 			},
 		},
 		// Configure prettier (last)
