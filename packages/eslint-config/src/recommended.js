@@ -213,8 +213,9 @@ export function defineConfig({
 			rules: {
 				...typescript.configs["eslint-recommended"].overrides[0].rules,
 				...typescript.configs.recommended.rules,
-				...typescript.configs["recommended-requiring-type-checking"]
-					.rules,
+				...typescript.configs["recommended-type-checked"].rules,
+				...typescript.configs.stylistic.rules,
+				...typescript.configs["stylistic-type-checked"].rules,
 			},
 		},
 		// Vue
