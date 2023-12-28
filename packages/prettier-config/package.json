@@ -15,10 +15,10 @@
 		"src"
 	],
 	"exports": {
-		".": "./src/recommended.cjs",
-		"./*": "./src/*.cjs"
+		".": "./src/recommended.js",
+		"./*": "./src/*.js"
 	},
-	"main": "./src/recommended.cjs",
+	"main": "./src/recommended.js",
 	"scripts": {
 		"pack": "pnpm pack"
 	},
