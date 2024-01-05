@@ -87,8 +87,7 @@ export function defineConfig({
 						],
 					},
 					{
-						pathPattern:
-							"^(?:dev|peer|optional|bundled)?[Dd]ependencies$",
+						pathPattern: "^(?:dev|peer|optional|bundled)?[Dd]ependencies$",
 						order: { type: "asc" },
 					},
 				],
@@ -144,12 +143,7 @@ export function defineConfig({
 					{
 						type: "natural",
 						groups: [
-							[
-								"internal-type",
-								"parent-type",
-								"sibling-type",
-								"index-type",
-							],
+							["internal-type", "parent-type", "sibling-type", "index-type"],
 							["node-type"],
 							["type", "builtin-type"],
 							["internal", "parent", "sibling", "index"],
@@ -216,6 +210,12 @@ export function defineConfig({
 				...typescript.configs["recommended-type-checked"].rules,
 				...typescript.configs.stylistic.rules,
 				...typescript.configs["stylistic-type-checked"].rules,
+
+				/**
+				 * Prefer types whenever possible
+				 * https://typescript-eslint.io/rules/consistent-type-definitions/
+				 */
+				"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
 			},
 		},
 		// Vue
