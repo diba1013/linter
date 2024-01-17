@@ -212,10 +212,10 @@ export function defineConfig({
 				...typescript.configs["stylistic-type-checked"].rules,
 
 				/**
-				 * Prefer types whenever possible
+				 * Personal style for plain objects vs repository interfaces
 				 * https://typescript-eslint.io/rules/consistent-type-definitions/
 				 */
-				"@typescript-eslint/consistent-type-definitions": ["warn", "type"],
+				"@typescript-eslint/consistent-type-definitions": "off",
 			},
 		},
 		// Vue
