@@ -218,6 +218,16 @@ export function defineConfig({
 				"@typescript-eslint/consistent-type-definitions": "off",
 			},
 		},
+		{
+			files: ["**/*.spec.{ts,tsx}"],
+			rules: {
+				/**
+				 * Do allow mock methods to be evaluated
+				 * https://typescript-eslint.io/rules/unbound-method/
+				 */
+				"@typescript-eslint/unbound-method": "off",
+			},
+		},
 		// Vue
 		{
 			files: ["**/*.vue"],
