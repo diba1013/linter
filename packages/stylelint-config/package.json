@@ -1,6 +1,6 @@
 {
 	"name": "@diba1013/stylelint-config",
-	"version": "0.10.6",
+	"version": "0.11.0",
 	"description": "The missing stylelint config for personal use",
 	"keywords": [],
 	"license": "MIT",
