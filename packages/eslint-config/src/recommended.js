@@ -5,11 +5,13 @@ import jsonc from "eslint-plugin-jsonc";
 import perfectionist from "eslint-plugin-perfectionist";
 import prettier from "eslint-plugin-prettier";
 import promise from "eslint-plugin-promise";
+import svelte from "eslint-plugin-svelte";
 import unicorn from "eslint-plugin-unicorn";
 import vue from "eslint-plugin-vue";
 import yml from "eslint-plugin-yml";
 import globals from "globals";
 import jsoncParser from "jsonc-eslint-parser";
+import svelteParser from "svelte-eslint-parser";
 import vueParser from "vue-eslint-parser";
 import yamlParser from "yaml-eslint-parser";
 
@@ -193,7 +195,7 @@ export function defineConfig({
 			},
 		},
 		{
-			files: ["**/*.{ts,tsx,cts,mts,vue}"],
+			files: ["**/*.{ts,tsx,cts,mts,vue,svelte}"],
 			plugins: {
 				"@typescript-eslint": typescript,
 			},
@@ -202,6 +204,7 @@ export function defineConfig({
 				parserOptions: {
 					tsconfigRootDir: root,
 					project: tsconfig,
+					extraFileExtensions: [".vue", ".svelte"],
 				},
 			},
 			rules: {
@@ -274,6 +277,22 @@ export function defineConfig({
 						},
 					},
 				],
+			},
+		},
+		// Svelte
+		{
+			files: ["**/*.svelte"],
+			plugins: {
+				svelte,
+			},
+			languageOptions: {
+				parser: svelteParser,
+				parserOptions: {
+					parser: typescriptParser,
+				},
+			},
+			rules: {
+				...svelte.configs.recommended.rules,
 			},
 		},
 		// Configure prettier (last)

@@ -32,6 +32,13 @@ export function defineConfig() {
 				files: ["*.html", "*.vue", "*.css", "*.scss"],
 				plugins: ["prettier-plugin-tailwindcss"],
 			},
+			{
+				files: ["*.svelte"],
+				plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+				options: {
+					parser: "svelte",
+				},
+			},
 		],
 	};
 }
