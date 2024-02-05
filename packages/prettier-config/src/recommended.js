@@ -11,9 +11,6 @@
  */
 export function defineConfig() {
 	return {
-		editorconfig: true,
-		pluginSearchDirs: false,
-
 		printWidth: 120,
 		tabWidth: 4,
 		useTabs: true,
