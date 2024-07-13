@@ -1,30 +1,44 @@
 import js from "@eslint/js";
-import typescript from "@typescript-eslint/eslint-plugin";
-import typescriptParser from "@typescript-eslint/parser";
 import jsonc from "eslint-plugin-jsonc";
 import perfectionist from "eslint-plugin-perfectionist";
-import prettier from "eslint-plugin-prettier";
-import promise from "eslint-plugin-promise";
-import svelte from "eslint-plugin-svelte";
 import unicorn from "eslint-plugin-unicorn";
 import vue from "eslint-plugin-vue";
 import yml from "eslint-plugin-yml";
 import globals from "globals";
-import jsoncParser from "jsonc-eslint-parser";
-import svelteParser from "svelte-eslint-parser";
-import vueParser from "vue-eslint-parser";
-import yamlParser from "yaml-eslint-parser";
+import typescript from "typescript-eslint";
 
 /**
  * Defines the custom configuration options for eslint config options.
  *
  * @typedef {Object} CustomLinterOptions
  * @property {string} [root] The root of the eslint configuration
- * @property {'node' | 'browser'} [environment] Configure the environment for the project
+ * @property {'node' | 'browser' | 'shared-node-browser'} [environment] Configure the environment for the project
  * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
  * @property {import("eslint").Linter.FlatConfig[]} [configs] Additional configuration allowing to overwrite almost anything
  */
+
+/**
+ * @typedef {Object} ExposedFlatConfig
+ * @property {import("eslint").Linter.FlatConfig} customize
+ * @property {import("eslint").Linter.FlatConfig[]} configurations
+ * @property {import("eslint").Linter.FlatConfig} [overwrite]
+ */
+
+/**
+ *
+ * @param {ExposedFlatConfig}
+ * @returns {import("eslint").Linter.FlatConfig[]} The configured linter configurations.
+ */
+export function defineCustomizedConfigurations({ customize: overwrite, configurations: configs, overwrite: addition }) {
+	const configurations = addition === undefined ? configs : [...configs, addition];
+	return configurations.map((configuration) => {
+		return {
+			...configuration,
+			...overwrite,
+		};
+	});
+}
 
 /**
  * Generates a standard linter configuration with various file templates.
@@ -33,28 +47,27 @@ import yamlParser from "yaml-eslint-parser";
  * @returns {import("eslint").Linter.FlatConfig[]} The configured linter configurations.
  */
 export function defineConfig({
+	environment = "shared-node-browser",
 	root = process.cwd(),
-	typescript: tsconfig = "tsconfig.json",
 	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
 	configs = [],
 } = {}) {
 	return [
 		// JSON
-		{
-			files: ["**/*.json"],
-			ignores: ["package-lock.json"],
-			plugins: {
-				jsonc,
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.json"],
+				ignores: ["package-lock.json"],
 			},
-			languageOptions: {
-				parser: jsoncParser,
-			},
-			rules: {
-				...jsonc.configs.base.overrides[0].rules,
-				...jsonc.configs["recommended-with-json"].rules,
-				...jsonc.configs["prettier"].rules,
-			},
-		},
+			configurations: [
+				// Use base json configuration
+				...jsonc.configs["flat/base"],
+				// Use recommended json configuration
+				jsonc.configs["flat/recommended-with-json"].at(-1),
+				// Disable conflicting rules with prettier
+				jsonc.configs["flat/prettier"].at(-1),
+			],
+		}),
 		{
 			files: ["**/package.json"],
 			rules: {
@@ -71,6 +84,7 @@ export function defineConfig({
 							"repository",
 							"funding",
 							"author",
+							"packageManager",
 							"engines",
 							"type",
 							"files",
@@ -96,221 +110,149 @@ export function defineConfig({
 			},
 		},
 		// YAML
-		{
-			files: ["**/*.{yaml,yml}"],
-			ignores: ["pnpm-lock.yaml"],
-			plugins: {
-				yml,
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.yaml", "**/*.yml"],
+				ignores: ["pnpm-lock.yaml"],
 			},
-			languageOptions: {
-				parser: yamlParser,
-			},
-			rules: {
-				...yml.configs.base.overrides[0].rules,
-				...yml.configs.recommended.rules,
-			},
-		},
+			configurations: [
+				// Use base yaml configuration
+				...yml.configs["flat/base"],
+				// Use standard yaml configuration
+				yml.configs["flat/standard"].at(-1),
+				// Disable conflicting rules with prettier
+				yml.configs["flat/prettier"].at(-1),
+			],
+		}),
 		// JavaScript
-		{
-			files: ["**/*.{js,jsx,cjs,mjs,ts,tsx,vue}"],
-			plugins: {
-				unicorn,
-				promise,
-				perfectionist,
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.js", "**/*.cjs", "**/*.mjs", "**/*.ts", "**/*.vue"],
 			},
-			languageOptions: {
-				parserOptions: {
+			configurations: [
+				// Enable recommended eslint configuration
+				js.configs.recommended,
+				// Enable custom perfectionist configuration
+				{
+					plugins: {
+						perfectionist,
+					},
+				},
+				// Enable recommended unicorn configuration
+				unicorn.configs["flat/recommended"],
+			],
+			overwrite: {
+				languageOptions: {
 					ecmaVersion: "latest",
 					sourceType: "module",
-					parserPath: "espree",
+					/**
+					 * Define globals based on environment
+					 * https://github.com/eslint/eslintrc/blob/main/conf/environments.js
+					 */
+					globals: globals[environment],
 				},
-				globals: {
-					...globals.browser,
-					...globals.node,
-					...globals.serviceworker,
-					...globals.worker,
-				},
-			},
-			rules: {
-				...js.configs.recommended.rules,
-				...unicorn.configs.recommended.rules,
-				...promise.configs.recommended.rules,
 
-				/**
-				 * Sort imports
-				 * https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
-				 */
-				"perfectionist/sort-imports": [
-					"warn",
-					{
-						type: "natural",
-						groups: [
-							["internal-type", "parent-type", "sibling-type", "index-type"],
-							["node-type"],
-							["type", "builtin-type"],
-							["internal", "parent", "sibling", "index"],
-							["node"],
-							["external", "builtin"],
-							["style"],
-							["side-effect"],
-							["object"],
-							["unknown"],
-						],
-						"custom-groups": {
-							value: {
-								node: "node:*",
+				rules: {
+					/**
+					 * Sort imports
+					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
+					 */
+					"perfectionist/sort-imports": [
+						"warn",
+						{
+							type: "natural",
+							groups: [
+								["internal-type", "parent-type", "sibling-type", "index-type"],
+								["node-type"],
+								["type", "builtin-type"],
+								["internal", "parent", "sibling", "index"],
+								["node"],
+								["external", "builtin"],
+								["style"],
+								["side-effect"],
+								["object"],
+								["unknown"],
+							],
+							"custom-groups": {
+								value: {
+									node: "node:*",
+								},
+								type: {
+									"node-type": "node:*",
+								},
 							},
-							type: {
-								"node-type": "node:*",
-							},
+							"internal-pattern": ["@/**", "#/**", "~/**"],
+							"newlines-between": "never",
 						},
-						"internal-pattern": ["@/**", "#/**", "~/**"],
-						"newlines-between": "never",
-					},
-				],
+					],
 
-				/**
-				 * Sort named imports
-				 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-imports
-				 */
-				"perfectionist/sort-named-imports": [
-					"warn",
-					{
-						type: "natural",
-						order: "asc",
-					},
-				],
+					/**
+					 * Sort named imports
+					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-imports
+					 */
+					"perfectionist/sort-named-imports": [
+						"warn",
+						{
+							type: "natural",
+							order: "asc",
+						},
+					],
 
-				/**
-				 * Sort named exports
-				 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-exports
-				 */
-				"perfectionist/sort-named-exports": [
-					"warn",
-					{
-						type: "natural",
-						order: "asc",
-					},
-				],
-			},
-		},
-		{
-			files: ["**/*.{ts,tsx,cts,mts,vue,svelte}"],
-			plugins: {
-				"@typescript-eslint": typescript,
-			},
-			languageOptions: {
-				parser: typescriptParser,
-				parserOptions: {
-					tsconfigRootDir: root,
-					project: tsconfig,
-					extraFileExtensions: [".vue", ".svelte"],
+					/**
+					 * Sort named exports
+					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-exports
+					 */
+					"perfectionist/sort-named-exports": [
+						"warn",
+						{
+							type: "natural",
+							order: "asc",
+						},
+					],
 				},
 			},
-			rules: {
-				...typescript.configs["eslint-recommended"].overrides[0].rules,
-				...typescript.configs.recommended.rules,
-				...typescript.configs["recommended-type-checked"].rules,
-				...typescript.configs.stylistic.rules,
-				...typescript.configs["stylistic-type-checked"].rules,
-
-				/**
-				 * Personal style for plain objects vs repository interfaces
-				 * https://typescript-eslint.io/rules/consistent-type-definitions/
-				 */
-				"@typescript-eslint/consistent-type-definitions": "off",
+		}),
+		// TypeScript
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.ts", "**/*.tsx", "**/*.vue"],
 			},
-		},
-		{
-			files: ["**/*.spec.{ts,tsx}"],
-			rules: {
-				/**
-				 * Do allow mock methods to be evaluated
-				 * https://typescript-eslint.io/rules/unbound-method/
-				 */
-				"@typescript-eslint/unbound-method": "off",
+			configurations: [
+				// Enable base typescript configuration
+				typescript.configs["base"],
+				// Enable eslint typescript replacement configuration
+				typescript.configs["eslintRecommended"],
+				// Enable strict typescript configuration, prevent duplication
+				typescript.configs["strictTypeChecked"].at(-1),
+				// Enable stylistic typescript configuration, prevent duplication
+				typescript.configs["stylisticTypeChecked"].at(-1),
+			],
+			overwrite: {
+				languageOptions: {
+					parserOptions: {
+						projectService: true,
+						tsconfigRootDir: root,
+					},
+				},
 			},
-		},
+		}),
 		// Vue
-		{
-			files: ["**/*.vue"],
-			plugins: {
-				vue,
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.vue"],
 			},
-			languageOptions: {
-				parser: vueParser,
-				parserOptions: {
-					parser: typescriptParser,
+			configurations: [
+				// Enable community crafted configuration
+				...vue.configs["flat/recommended"],
+			],
+			overwrite: {
+				languageOptions: {
+					parserOptions: {
+						parser: "@typescript-eslint/parser",
+					},
 				},
 			},
-			rules: {
-				...vue.configs["vue3-essential"].rules,
-				...vue.configs["vue3-strongly-recommended"].rules,
-				...vue.configs["vue3-recommended"].rules,
-
-				/**
-				 * Enforce different naming strategy for vue files
-				 * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/filename-case.md
-				 */
-				"unicorn/filename-case": [
-					"error",
-					{
-						case: "pascalCase",
-					},
-				],
-			},
-		},
-		// Solid, React
-		{
-			files: ["**/{components,pages}/*.tsx"],
-			rules: {
-				/**
-				 * Enforce different naming strategy for vue files
-				 * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/filename-case.md
-				 */
-				"unicorn/filename-case": [
-					"error",
-					{
-						cases: {
-							pascalCase: true,
-							kebabCase: true,
-						},
-					},
-				],
-			},
-		},
-		// Svelte
-		{
-			files: ["**/*.svelte"],
-			plugins: {
-				svelte,
-			},
-			languageOptions: {
-				parser: svelteParser,
-				parserOptions: {
-					parser: typescriptParser,
-				},
-			},
-			rules: {
-				...svelte.configs.recommended.rules,
-			},
-		},
-		// Configure prettier (last)
-		{
-			plugins: {
-				prettier,
-			},
-			languageOptions: {
-				ecmaVersion: "latest",
-				sourceType: "module",
-			},
-			rules: {
-				"prettier/prettier": "warn",
-				"arrow-body-style": "off",
-				"prefer-arrow-callback": "off",
-				"no-mixed-spaces-and-tabs": "off",
-			},
-		},
+		}),
 		// Allow overwrites
 		...configs,
 		// Configure global ignores
@@ -319,8 +261,3 @@ export function defineConfig({
 		},
 	];
 }
-
-/**
- * @type Linter.FlatConfig[]
- */
-export default defineConfig();
