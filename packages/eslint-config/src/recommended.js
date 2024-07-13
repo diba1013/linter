@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import jsonc from "eslint-plugin-jsonc";
 import perfectionist from "eslint-plugin-perfectionist";
 import unicorn from "eslint-plugin-unicorn";
+import vue from "eslint-plugin-vue";
 import yml from "eslint-plugin-yml";
 import globals from "globals";
 import typescript from "typescript-eslint";
@@ -126,7 +127,7 @@ export function defineConfig({
 		// JavaScript
 		...defineCustomizedConfigurations({
 			customize: {
-				files: ["**/*.js", "**/*.cjs", "**/*.mjs", "**/*.ts"],
+				files: ["**/*.js", "**/*.cjs", "**/*.mjs", "**/*.ts", "**/*.vue"],
 			},
 			configurations: [
 				// Enable recommended eslint configuration
@@ -214,7 +215,7 @@ export function defineConfig({
 		// TypeScript
 		...defineCustomizedConfigurations({
 			customize: {
-				files: ["**/*.ts", "**/*.tsx"],
+				files: ["**/*.ts", "**/*.tsx", "**/*.vue"],
 			},
 			configurations: [
 				// Enable base typescript configuration
@@ -231,6 +232,23 @@ export function defineConfig({
 					parserOptions: {
 						projectService: true,
 						tsconfigRootDir: root,
+					},
+				},
+			},
+		}),
+		// Vue
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/*.vue"],
+			},
+			configurations: [
+				// Enable community crafted configuration
+				...vue.configs["flat/recommended"],
+			],
+			overwrite: {
+				languageOptions: {
+					parserOptions: {
+						parser: "@typescript-eslint/parser",
 					},
 				},
 			},
