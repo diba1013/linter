@@ -33,4 +33,4 @@ jobs:
 
       - name: Publish
         run: |
-          pnpm publish --no-git-checks
+          pnpm -r publish --no-git-checks
