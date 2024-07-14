@@ -252,6 +252,14 @@ export function defineConfig({
 						parser: typescript.parser,
 					},
 				},
+
+				rules: {
+					/**
+					 * Synchronize indent with prettier configuration.
+					 * https://eslint.vuejs.org/rules/html-indent.html
+					 */
+					"vue/html-indent": ["warn", "tab"],
+				},
 			},
 		}),
 		// Allow overwrites
