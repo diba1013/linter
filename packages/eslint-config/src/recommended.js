@@ -232,6 +232,7 @@ export function defineConfig({
 					parserOptions: {
 						projectService: true,
 						tsconfigRootDir: root,
+						extraFileExtensions: [".vue"],
 					},
 				},
 			},
@@ -248,7 +249,7 @@ export function defineConfig({
 			overwrite: {
 				languageOptions: {
 					parserOptions: {
-						parser: "@typescript-eslint/parser",
+						parser: typescript.parser,
 					},
 				},
 			},
