@@ -1,6 +1,7 @@
 import js from "@eslint/js";
 import jsonc from "eslint-plugin-jsonc";
 import perfectionist from "eslint-plugin-perfectionist";
+import prettier from "eslint-plugin-prettier/recommended";
 import unicorn from "eslint-plugin-unicorn";
 import vue from "eslint-plugin-vue";
 import yml from "eslint-plugin-yml";
@@ -264,7 +265,24 @@ export function defineConfig({
 		}),
 		// Allow overwrites
 		...configs,
+		// Prettier
+		...defineCustomizedConfigurations({
+			configurations: [
+				// Enable recommended prettier plugin
+				prettier,
+			],
+			overwrite: {
+				rules: {
+					/**
+					 * Configure prettier as warn since it will be automatically fixed.
+					 * https://github.com/prettier/eslint-plugin-prettier#options
+					 */
+					"prettier/prettier": "warn",
+				},
+			},
+		}),
 		// Configure global ignores
+		// https://eslint.org/docs/latest/use/configure/ignore#ignoring-files
 		{
 			ignores,
 		},
