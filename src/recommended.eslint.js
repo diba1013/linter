@@ -16,14 +16,14 @@ import typescript from "typescript-eslint";
  * @property {'node' | 'browser' | 'shared-node-browser'} [environment] Configure the environment for the project
  * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
- * @property {import("eslint").Linter.FlatConfig[]} [configs] Additional configuration allowing to overwrite almost anything
+ * @property {import("eslint").Linter.Config[]} [configs] Additional configuration allowing to overwrite almost anything
  */
 
 /**
  * @typedef {Object} ExposedFlatConfig
- * @property {import("eslint").Linter.FlatConfig} customize
- * @property {import("eslint").Linter.FlatConfig[]} configurations
- * @property {import("eslint").Linter.FlatConfig} [overwrite]
+ * @property {import("eslint").Linter.Config} customize
+ * @property {import("eslint").Linter.Config[]} configurations
+ * @property {import("eslint").Linter.Config} [overwrite]
  */
 
 /**
@@ -174,7 +174,7 @@ export function defineConfig({
 								["object"],
 								["unknown"],
 							],
-							"custom-groups": {
+							customGroups: {
 								value: {
 									node: "node:*",
 								},
@@ -182,8 +182,8 @@ export function defineConfig({
 									"node-type": "node:*",
 								},
 							},
-							"internal-pattern": ["@/**", "#/**", "~/**"],
-							"newlines-between": "never",
+							internalPattern: ["@/**", "#/**", "~/**"],
+							newlinesBetween: "never",
 						},
 					],
 

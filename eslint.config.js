@@ -1,6 +1,6 @@
-import { defineConfig } from "@diba1013/eslint-config";
+import { defineLinterConfig } from "@diba1013/linter";
 
-export default defineConfig({
+export default defineLinterConfig({
 	environment: "node",
 	typescript: false,
 });

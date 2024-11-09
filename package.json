@@ -1,44 +1,61 @@
 {
-	"name": "@diba1013/config",
+	"name": "@diba1013/linter",
 	"version": "0.12.4",
-	"description": "The missing linter/formatter config for personal use",
-	"private": true,
+	"description": "The missing linter configurations for personal use.",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/diba1013/config.git"
+		"url": "git://github.com/diba1013/linter.git"
 	},
 	"author": "diba1013",
-	"packageManager": "pnpm@9.1.2",
+	"packageManager": "pnpm@9.12.3",
 	"engines": {
-		"node": ">=20",
-		"pnpm": ">=8"
+		"node": ">=20"
 	},
 	"type": "module",
+	"files": [
+		"src"
+	],
+	"exports": {
+		".": "./src/index.js",
+		"./eslint": "./src/recommended.eslint.js",
+		"./prettier": "./src/recommended.prettier.js"
+	},
+	"main": "./src/index.js",
 	"scripts": {
 		"prepare": "husky",
+		"build": "tscz",
+		"build:watch": "tscz --watch",
 		"lint": "eslint .",
-		"lint:fix": "eslint --fix .",
-		"change": "pnpm changeset version; git add **/package.json .changeset; pnpm version --include-workspace-root --force ${npm_config_tag}"
+		"lint:fix": "eslint --fix ."
 	},
-	"workspaces": [
-		"packages/**"
-	],
+	"peerDependencies": {
+		"eslint": "9.x",
+		"prettier": "3.x"
+	},
 	"dependencies": {
-		"eslint": "^9.7.0",
-		"husky": "^9.0.11",
-		"prettier": "^3.3.2",
-		"stylelint": "^16.7.0"
+		"@eslint/eslintrc": "^3.1.0",
+		"@eslint/js": "^9.14.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-jsonc": "^2.17.0",
+		"eslint-plugin-perfectionist": "^3.9.1",
+		"eslint-plugin-prettier": "5.2.1",
+		"eslint-plugin-promise": "^7.1.0",
+		"eslint-plugin-unicorn": "^56.0.0",
+		"eslint-plugin-vue": "^9.30.0",
+		"eslint-plugin-yml": "^1.15.0",
+		"globals": "^15.12.0",
+		"typescript-eslint": "8.13.0"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.7",
-		"@commitlint/cli": "^19.3.0",
-		"@commitlint/config-conventional": "^19.2.2",
-		"@diba1013/eslint-config": "workspace:*",
-		"@diba1013/prettier-config": "workspace:*",
-		"@types/node": "^20.14.10",
-		"lint-staged": "^15.2.7",
-		"ts-node": "^10.9.2",
-		"typescript": "^5.5.3"
+		"@commitlint/cli": "^19.5.0",
+		"@commitlint/config-conventional": "^19.5.0",
+		"@diba1013/linter": "workspace:*",
+		"@types/node": "^22.9.0",
+		"eslint": "^9.14.0",
+		"husky": "^9.1.6",
+		"lint-staged": "^15.2.10",
+		"prettier": "^3.3.3",
+		"typescript": "^5.6"
 	}
 }

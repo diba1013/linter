@@ -16,7 +16,6 @@ export function defineConfig() {
 		useTabs: true,
 		trailingComma: "all",
 		singleAttributePerLine: true,
-		plugins: ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
 
 		overrides: [
 			{
@@ -28,12 +27,6 @@ export function defineConfig() {
 			},
 			{
 				files: ["*.html", "*.vue", "*.css", "*.scss"],
-			},
-			{
-				files: ["*.svelte"],
-				options: {
-					parser: "svelte",
-				},
 			},
 		],
 	};
