@@ -147,7 +147,7 @@ export function defineConfig({
 					ecmaVersion: "latest",
 					sourceType: "module",
 					/**
-					 * Define globals based on environment
+					 * Define globals based on environment.
 					 * https://github.com/eslint/eslintrc/blob/main/conf/environments.js
 					 */
 					globals: globals[environment],
@@ -155,7 +155,7 @@ export function defineConfig({
 
 				rules: {
 					/**
-					 * Sort imports
+					 * Sort imports.
 					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-imports
 					 */
 					"perfectionist/sort-imports": [
@@ -182,13 +182,13 @@ export function defineConfig({
 									"node-type": "node:*",
 								},
 							},
-							internalPattern: ["@/**", "#/**", "~/**"],
+							internalPattern: ["^[@#~]/.*"],
 							newlinesBetween: "never",
 						},
 					],
 
 					/**
-					 * Sort named imports
+					 * Sort named imports.
 					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-imports
 					 */
 					"perfectionist/sort-named-imports": [
@@ -200,7 +200,7 @@ export function defineConfig({
 					],
 
 					/**
-					 * Sort named exports
+					 * Sort named exports.
 					 * https://eslint-plugin-perfectionist.azat.io/rules/sort-named-exports
 					 */
 					"perfectionist/sort-named-exports": [
@@ -236,8 +236,27 @@ export function defineConfig({
 						extraFileExtensions: [".vue"],
 					},
 				},
+
+				rules: {
+					/**
+					 * Use personal preference of types for plain objects and interfaces for classes.
+					 * https://typescript-eslint.io/rules/consistent-type-definitions/
+					 */
+					"@typescript-eslint/consistent-type-definitions": "off",
+				},
 			},
 		}),
+		// Typescript Tests
+		{
+			files: ["**/*.spec.ts"],
+			rules: {
+				/**
+				 * Disable rule conflicting with chai assertions.
+				 * https://typescript-eslint.io/rules/no-unused-expressions/
+				 */
+				"@typescript-eslint/no-unused-expressions": "off",
+			},
+		},
 		// Vue
 		...defineCustomizedConfigurations({
 			customize: {
