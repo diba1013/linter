@@ -219,14 +219,10 @@ export function defineConfig({
 				files: ["**/*.ts", "**/*.tsx", "**/*.vue"],
 			},
 			configurations: [
-				// Enable base typescript configuration
-				typescript.configs["base"],
-				// Enable eslint typescript replacement configuration
-				typescript.configs["eslintRecommended"],
 				// Enable strict typescript configuration, prevent duplication
-				typescript.configs["strictTypeChecked"].at(-1),
+				typescript.configs.strictTypeChecked,
 				// Enable stylistic typescript configuration, prevent duplication
-				typescript.configs["stylisticTypeChecked"].at(-1),
+				typescript.configs.stylisticTypeChecked,
 			],
 			overwrite: {
 				languageOptions: {
