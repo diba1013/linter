@@ -220,9 +220,9 @@ export function defineConfig({
 			},
 			configurations: [
 				// Enable strict typescript configuration, prevent duplication
-				typescript.configs.strictTypeChecked,
+				...typescript.configs.strictTypeChecked,
 				// Enable stylistic typescript configuration, prevent duplication
-				typescript.configs.stylisticTypeChecked,
+				...typescript.configs.stylisticTypeChecked,
 			],
 			overwrite: {
 				languageOptions: {
