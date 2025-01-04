@@ -24,8 +24,6 @@
 	"main": "./src/index.js",
 	"scripts": {
 		"prepare": "husky",
-		"build": "tscz",
-		"build:watch": "tscz --watch",
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix ."
 	},
