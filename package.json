@@ -1,6 +1,6 @@
 {
 	"name": "@diba1013/linter",
-	"version": "0.12.4",
+	"version": "0.13.0",
 	"description": "The missing linter configurations for personal use.",
 	"license": "MIT",
 	"repository": {
