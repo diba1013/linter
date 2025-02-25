@@ -18,8 +18,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Prepare
-        run: |
-          corepack enable
+        uses: pnpm/action-setup@v4
 
       - name: Setup node
         uses: actions/setup-node@v4
