@@ -8,7 +8,7 @@
 		"url": "git://github.com/diba1013/linter.git"
 	},
 	"author": "diba1013",
-	"packageManager": "pnpm@9.15.4",
+	"packageManager": "pnpm@10.5.0",
 	"engines": {
 		"node": ">=20"
 	},
@@ -32,28 +32,28 @@
 		"prettier": "3.x"
 	},
 	"dependencies": {
-		"@eslint/eslintrc": "^3.2.0",
-		"@eslint/js": "^9.19.0",
+		"@eslint/eslintrc": "^3.3.0",
+		"@eslint/js": "^9.21.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-jsonc": "^2.19.1",
-		"eslint-plugin-perfectionist": "^4.7.0",
+		"eslint-plugin-perfectionist": "^4.9.0",
 		"eslint-plugin-prettier": "5.2.3",
 		"eslint-plugin-promise": "^7.2.1",
-		"eslint-plugin-unicorn": "^56.0.1",
+		"eslint-plugin-unicorn": "^57.0.0",
 		"eslint-plugin-vue": "^9.32.0",
-		"eslint-plugin-yml": "^1.16.0",
-		"globals": "^15.14.0",
-		"typescript-eslint": "8.21.0"
+		"eslint-plugin-yml": "^1.17.0",
+		"globals": "^16.0.0",
+		"typescript-eslint": "8.25.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^19.6.1",
-		"@commitlint/config-conventional": "^19.6.0",
+		"@commitlint/cli": "^19.7.1",
+		"@commitlint/config-conventional": "^19.7.1",
 		"@diba1013/linter": "workspace:*",
-		"@types/node": "^22.10.10",
-		"eslint": "^9.19.0",
+		"@types/node": "^22.13.5",
+		"eslint": "^9.21.0",
 		"husky": "^9.1.7",
-		"lint-staged": "^15.4.2",
-		"prettier": "^3.4.2",
-		"typescript": "^5.7"
+		"lint-staged": "^15.4.3",
+		"prettier": "^3.5.2",
+		"typescript": "^5.7.3"
 	}
 }
