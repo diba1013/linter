@@ -140,7 +140,7 @@ export function defineConfig({
 					},
 				},
 				// Enable recommended unicorn configuration
-				unicorn.configs["flat/recommended"],
+				unicorn.configs["recommended"],
 			],
 			overwrite: {
 				languageOptions: {
