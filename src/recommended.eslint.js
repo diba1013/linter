@@ -239,6 +239,16 @@ export function defineConfig({
 					 * https://typescript-eslint.io/rules/consistent-type-definitions/
 					 */
 					"@typescript-eslint/consistent-type-definitions": "off",
+
+					/**
+					 * Generally, overloading a function is used rarely, and if so, they should be properly documented and distinguished via parameters.
+					 * https://typescript-eslint.io/rules/unified-signatures/
+					 */
+					"@typescript-eslint/unified-signatures": [
+						{
+							ignoreDifferentlyNamedParameters: true,
+						},
+					],
 				},
 			},
 		}),
