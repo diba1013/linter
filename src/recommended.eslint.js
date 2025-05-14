@@ -7,6 +7,7 @@ import vue from "eslint-plugin-vue";
 import yml from "eslint-plugin-yml";
 import globals from "globals";
 import typescript from "typescript-eslint";
+import vueParser from "vue-eslint-parser";
 
 /**
  * Defines the custom configuration options for eslint config options.
@@ -273,9 +274,14 @@ export function defineConfig({
 				...vue.configs["flat/recommended"],
 			],
 			overwrite: {
+				parser: vueParser,
 				languageOptions: {
+					sourceType: "module",
 					parserOptions: {
 						parser: typescript.parser,
+					},
+					globals: {
+						...globals.browser,
 					},
 				},
 
