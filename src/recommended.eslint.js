@@ -246,6 +246,7 @@ export function defineConfig({
 					 * https://typescript-eslint.io/rules/unified-signatures/
 					 */
 					"@typescript-eslint/unified-signatures": [
+						"warn",
 						{
 							ignoreDifferentlyNamedParameters: true,
 						},
