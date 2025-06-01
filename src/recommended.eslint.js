@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import json from "@eslint/json";
 import jsonc from "eslint-plugin-jsonc";
 import perfectionist from "eslint-plugin-perfectionist";
 import prettier from "eslint-plugin-prettier/recommended";
@@ -59,7 +60,80 @@ export function defineConfig({
 		...defineCustomizedConfigurations({
 			customize: {
 				files: ["**/*.json"],
-				ignores: ["package-lock.json"],
+				ignores: ["**/package.json", "package-lock.json"],
+			},
+			configurations: [
+				// Use recommended configuration.
+				json.configs.recommended,
+			],
+		}),
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/tsconfig.json", ".vscode/*.json", ".devcontainer/*.json"],
+				language: "json/jsonc",
+				languageOptions: {
+					allowTrailingCommas: true,
+				},
+			},
+			configurations: [
+				// Use the recommended configuration.
+				json.configs.recommended,
+			],
+		}),
+		...defineCustomizedConfigurations({
+			customize: {
+				files: ["**/package.json"],
+				rules: {
+					/**
+					 * Enforce a specific ordering of package.json properties.
+					 * This has been declared out-of-scope for @eslint/json: https://github.com/eslint/json/discussions/87
+					 * https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html
+					 */
+					"jsonc/sort-keys": [
+						"error",
+						{
+							pathPattern: "^$",
+							order: [
+								"name",
+								"version",
+								"description",
+								"keywords",
+								"license",
+								"repository",
+								"funding",
+								"author",
+								"packageManager",
+								"engines",
+								"type",
+								"files",
+								"exports",
+								"main",
+								"module",
+								"unpkg",
+								"bin",
+								"scripts",
+								"husky",
+								"lint-staged",
+								"peerDependencies",
+								"peerDependenciesMeta",
+								"dependencies",
+								"devDependencies",
+							],
+						},
+						{
+							pathPattern: "^(?:dev|peer|optional|bundled)?[Dd]ependencies$",
+							order: { type: "asc" },
+						},
+						{
+							order: { type: "asc" },
+							pathPattern: "^(?:resolutions|overrides|pnpm.overrides)$",
+						},
+						{
+							order: ["types", "import", "require", "default"],
+							pathPattern: "^exports.*$",
+						},
+					],
+				},
 			},
 			configurations: [
 				// Use base json configuration
@@ -70,47 +144,6 @@ export function defineConfig({
 				jsonc.configs["flat/prettier"].at(-1),
 			],
 		}),
-		{
-			files: ["**/package.json"],
-			rules: {
-				"jsonc/sort-keys": [
-					"error",
-					{
-						pathPattern: "^$",
-						order: [
-							"name",
-							"version",
-							"description",
-							"keywords",
-							"license",
-							"repository",
-							"funding",
-							"author",
-							"packageManager",
-							"engines",
-							"type",
-							"files",
-							"exports",
-							"main",
-							"module",
-							"unpkg",
-							"bin",
-							"scripts",
-							"husky",
-							"lint-staged",
-							"peerDependencies",
-							"peerDependenciesMeta",
-							"dependencies",
-							"devDependencies",
-						],
-					},
-					{
-						pathPattern: "^(?:dev|peer|optional|bundled)?[Dd]ependencies$",
-						order: { type: "asc" },
-					},
-				],
-			},
-		},
 		// YAML
 		...defineCustomizedConfigurations({
 			customize: {
