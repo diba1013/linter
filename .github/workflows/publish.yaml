@@ -41,7 +41,7 @@ jobs:
           pnpm install --frozen-lockfile
 
       - name: Verify
-        run: pnpm audit signatures
+        run: npm audit signatures
 
       - name: Release
         env:
