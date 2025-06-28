@@ -60,6 +60,7 @@ export function defineConfig({
 		...defineCustomizedConfigurations({
 			customize: {
 				files: ["**/*.json"],
+				language: "json/json",
 				ignores: ["**/package.json", "package-lock.json"],
 			},
 			configurations: [
