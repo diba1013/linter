@@ -61,6 +61,7 @@ export function defineConfig({
 			customize: {
 				files: ["**/*.json"],
 				language: "json/json",
+				// package.json are handled by jsonc for sorted keys.
 				ignores: ["**/package.json", "package-lock.json"],
 			},
 			configurations: [
@@ -150,7 +151,8 @@ export function defineConfig({
 		...defineCustomizedConfigurations({
 			customize: {
 				files: ["**/*.yaml", "**/*.yml"],
-				ignores: ["pnpm-lock.yaml"],
+				// helm chart configuration use go-templating which cannot be parsed.
+				ignores: ["**/templates/**/*.yaml", "pnpm-lock.yaml"],
 			},
 			configurations: [
 				// Use base yaml configuration
