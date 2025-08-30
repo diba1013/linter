@@ -70,7 +70,8 @@ export function defineConfig({
 		}),
 		...defineCustomizedConfigurations({
 			customize: {
-				files: ["**/tsconfig.json", ".vscode/*.json", ".devcontainer/*.json"],
+				// The editor treats these json files, therefore eslint should too.
+				files: ["**/tsconfig*.json", ".vscode/*.json", ".devcontainer/*.json"],
 				language: "json/jsonc",
 				languageOptions: {
 					allowTrailingCommas: true,
