@@ -8,9 +8,9 @@
 		"url": "git://github.com/diba1013/linter.git"
 	},
 	"author": "diba1013",
-	"packageManager": "pnpm@10.15.0",
+	"packageManager": "pnpm@10.23.0",
 	"engines": {
-		"node": ">=22"
+		"node": ">=24"
 	},
 	"type": "module",
 	"files": [
@@ -32,31 +32,31 @@
 		"prettier": "3.x"
 	},
 	"dependencies": {
-		"@eslint/eslintrc": "^3.3.1",
-		"@eslint/js": "^9.34.0",
-		"@eslint/json": "^0.13.2",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-jsonc": "^2.20.1",
-		"eslint-plugin-perfectionist": "^4.15.0",
-		"eslint-plugin-prettier": "^5.5.4",
-		"eslint-plugin-promise": "^7.2.1",
-		"eslint-plugin-unicorn": "^60.0.0",
-		"eslint-plugin-vue": "^10.4.0",
-		"eslint-plugin-yml": "^1.18.0",
-		"globals": "^16.3.0",
-		"typescript-eslint": "^8.41.0",
-		"vue-eslint-parser": "^10.2.0"
+		"@eslint/eslintrc": "3.3.1",
+		"@eslint/js": "9.39.1",
+		"@eslint/json": "0.14.0",
+		"eslint-config-prettier": "10.1.8",
+		"eslint-plugin-jsonc": "2.21.0",
+		"eslint-plugin-perfectionist": "4.15.1",
+		"eslint-plugin-prettier": "5.5.4",
+		"eslint-plugin-promise": "7.2.1",
+		"eslint-plugin-unicorn": "62.0.0",
+		"eslint-plugin-vue": "10.6.0",
+		"eslint-plugin-yml": "1.19.0",
+		"globals": "16.5.0",
+		"typescript-eslint": "8.48.0",
+		"vue-eslint-parser": "10.2.0"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "19.8.1",
-		"@commitlint/config-conventional": "19.8.1",
+		"@commitlint/cli": "20.1.0",
+		"@commitlint/config-conventional": "20.0.0",
 		"@diba1013/linter": "workspace:*",
-		"@types/node": "24.0.3",
-		"eslint": "9.29.0",
+		"@types/node": "24.10.1",
+		"eslint": "9.39.1",
 		"husky": "9.1.7",
-		"lint-staged": "16.1.2",
-		"prettier": "3.5.3",
-		"semantic-release": "24.2.5",
-		"typescript": "5.8.3"
+		"lint-staged": "16.2.7",
+		"prettier": "3.6.2",
+		"semantic-release": "25.0.2",
+		"typescript": "5.9.3"
 	}
 }
