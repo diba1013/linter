@@ -4,13 +4,16 @@ on:
   - push
   - pull_request
 
+permissions:
+  packages: read # Allow downloading of packages.
+
 jobs:
   build:
-    runs-on: ubuntu-latest
     name: Build
+    runs-on: ubuntu-latest
 
     env:
-      NPM_GITHUB_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NPM_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout
