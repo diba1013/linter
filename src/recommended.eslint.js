@@ -293,13 +293,19 @@ export function defineConfig({
 		}),
 		// Typescript Tests
 		{
-			files: ["**/*.spec.ts"],
+			files: ["**/*.{spec,spec-d}.ts"],
 			rules: {
 				/**
 				 * Disable rule conflicting with chai assertions.
 				 * https://typescript-eslint.io/rules/no-unused-expressions/
 				 */
 				"@typescript-eslint/no-unused-expressions": "off",
+
+				/**
+				 * Disable `describe` promise returns.
+				 * https://typescript-eslint.io/rules/no-floating-promises/
+				 */
+				"@typescript-eslint/no-floating-promises": "off",
 			},
 		},
 		// Vue
