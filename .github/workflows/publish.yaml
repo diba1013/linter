@@ -14,7 +14,8 @@ permissions:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
+    timeout-minutes: 10
 
     env:
       NPM_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
