@@ -201,15 +201,39 @@ export function defineConfig({
 						{
 							type: "natural",
 							groups: [
-								["type-internal", "type-parent", "type-sibling", "type-index"],
-								["type-builtin"],
-								["type"],
-								["value-internal", "value-parent", "value-sibling", "value-index"],
-								["value-builtin"],
-								["external", "builtin"],
-								["style"],
-								["side-effect"],
-								["unknown"],
+								// import 'reflect-metadata';
+								"side-effect",
+
+								// import type { Stats } from 'node:fs';
+								"type-builtin",
+								// import type { AxiosResponse } from 'axios';
+								"type",
+								// import type { User } from '@/types';
+								"type-internal",
+								// import type { Shared } from '../types';
+								"type-parent",
+								// import type { Local } from './utils';
+								"type-sibling",
+								"type-index",
+
+								// import fs from 'node:fs';
+								"value-builtin",
+								// import axios from 'axios';
+								"external",
+								// import path from 'path';
+								"builtin",
+								// import { api } from '@/api';
+								"value-internal",
+								// import { util } from '../util';
+								"value-parent",
+								// import { theme } from './theme';
+								"value-sibling",
+								"value-index",
+
+								// import './styles.css';
+								"style",
+								// any other imports
+								"unknown",
 							],
 							customGroups: [
 								{
