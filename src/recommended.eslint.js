@@ -140,11 +140,11 @@ export function defineConfig({
 			},
 			configurations: [
 				// Use base json configuration
-				...jsonc.configs["flat/base"],
+				...jsonc.configs.base,
 				// Use recommended json configuration
-				jsonc.configs["flat/recommended-with-json"].at(-1),
+				jsonc.configs["recommended-with-json"].at(-1),
 				// Disable conflicting rules with prettier
-				jsonc.configs["flat/prettier"].at(-1),
+				jsonc.configs.prettier.at(-1),
 			],
 		}),
 		// YAML
@@ -156,11 +156,11 @@ export function defineConfig({
 			},
 			configurations: [
 				// Use base yaml configuration
-				...yml.configs["flat/base"],
+				...yml.configs.base,
 				// Use standard yaml configuration
-				yml.configs["flat/standard"].at(-1),
+				yml.configs.standard.at(-1),
 				// Disable conflicting rules with prettier
-				yml.configs["flat/prettier"].at(-1),
+				yml.configs.prettier.at(-1),
 			],
 		}),
 		// JavaScript
@@ -178,7 +178,7 @@ export function defineConfig({
 					},
 				},
 				// Enable recommended unicorn configuration
-				unicorn.configs["recommended"],
+				unicorn.configs.recommended,
 			],
 			overwrite: {
 				languageOptions: {
@@ -201,27 +201,29 @@ export function defineConfig({
 						{
 							type: "natural",
 							groups: [
-								["internal-type", "parent-type", "sibling-type", "index-type"],
-								["node-type"],
-								["type", "builtin-type"],
-								["internal", "parent", "sibling", "index"],
-								["node"],
+								["type-internal", "type-parent", "type-sibling", "type-index"],
+								["type-builtin"],
+								["type"],
+								["value-internal", "value-parent", "value-sibling", "value-index"],
+								["value-builtin"],
 								["external", "builtin"],
 								["style"],
 								["side-effect"],
-								["object"],
 								["unknown"],
 							],
-							customGroups: {
-								value: {
-									node: "node:*",
+							customGroups: [
+								{
+									groupName: "value-builtin",
+									elementNamePattern: "node:*",
 								},
-								type: {
-									"node-type": "node:*",
+								{
+									selector: "type",
+									groupName: "type-builtin",
+									elementNamePattern: "node:*",
 								},
-							},
+							],
 							internalPattern: ["^[@#~]/.*"],
-							newlinesBetween: "never",
+							newlinesBetween: 0,
 						},
 					],
 
