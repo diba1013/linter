@@ -31,31 +31,31 @@
 		"prettier": "3.x"
 	},
 	"dependencies": {
-		"@eslint/eslintrc": "3.3.5",
+		"@eslint/eslintrc": "3.3.6",
 		"@eslint/js": "10.0.1",
-		"@eslint/json": "1.1.0",
+		"@eslint/json": "2.0.1",
 		"eslint-config-prettier": "10.1.8",
-		"eslint-plugin-jsonc": "3.1.2",
-		"eslint-plugin-perfectionist": "5.6.0",
-		"eslint-plugin-prettier": "5.5.5",
-		"eslint-plugin-unicorn": "63.0.0",
-		"eslint-plugin-vue": "10.8.0",
-		"eslint-plugin-yml": "3.3.1",
-		"globals": "17.4.0",
-		"typescript-eslint": "8.57.0",
-		"vue-eslint-parser": "10.4.0"
+		"eslint-plugin-jsonc": "3.3.0",
+		"eslint-plugin-perfectionist": "5.10.0",
+		"eslint-plugin-prettier": "5.5.6",
+		"eslint-plugin-unicorn": "72.0.0",
+		"eslint-plugin-vue": "10.10.0",
+		"eslint-plugin-yml": "3.6.0",
+		"globals": "17.7.0",
+		"typescript-eslint": "8.65.0",
+		"vue-eslint-parser": "10.4.1"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "20.4.4",
-		"@commitlint/config-conventional": "20.4.4",
+		"@commitlint/cli": "21.2.1",
+		"@commitlint/config-conventional": "21.2.0",
 		"@diba1013/linter": "workspace:*",
-		"@types/node": "25.5.0",
-		"baseline-browser-mapping": "2.10.7",
-		"eslint": "10.0.3",
+		"@types/node": "26.1.1",
+		"baseline-browser-mapping": "2.10.43",
+		"eslint": "10.7.0",
 		"husky": "9.1.7",
-		"lint-staged": "16.3.3",
-		"prettier": "3.8.1",
-		"semantic-release": "25.0.3",
-		"typescript": "5.9.3"
+		"lint-staged": "17.1.0",
+		"prettier": "3.9.5",
+		"semantic-release": "25.0.8",
+		"typescript": "6.0.3"
 	}
 }

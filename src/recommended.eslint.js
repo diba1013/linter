@@ -35,9 +35,9 @@ import vueParser from "vue-eslint-parser";
  */
 export function defineCustomizedConfigurations({ customize: overwrite, configurations: configs, overwrite: addition }) {
 	const configurations = addition === undefined ? configs : [...configs, addition];
-	return configurations.map((configuration) => {
+	return configurations.map((config) => {
 		return {
-			...configuration,
+			...config,
 			...overwrite,
 		};
 	});
