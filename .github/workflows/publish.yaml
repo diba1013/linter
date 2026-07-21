@@ -1,4 +1,5 @@
-name: Release
+name: publish
+
 on:
   push:
     branches:
@@ -12,33 +13,31 @@ permissions:
   pull-requests: write # Comment on PRs fixed with this release.
 
 jobs:
-  release:
-    name: Release
+  publish:
     runs-on: ubuntu-slim
     timeout-minutes: 10
 
-    env:
-      NPM_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
         with:
-          # We need to fetch all history for semantic-release to work properly.
           fetch-depth: 0
 
       - name: Prepare
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
 
       - name: Setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
+          registry-url: https://npm.pkg.github.com
           node-version-file: .nvmrc
           cache: pnpm
 
       - name: Install
         run: |
           pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Verify
         run: npm audit signatures
