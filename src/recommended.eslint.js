@@ -16,7 +16,6 @@ import vueParser from "vue-eslint-parser";
  * @typedef {Object} CustomLinterOptions
  * @property {string} [root] The root of the eslint configuration
  * @property {'node' | 'browser' | 'shared-node-browser'} [environment] Configure the environment for the project
- * @property {boolean | string | string[]} [typescript] Configure if the root typescript config should be read
  * @property {string[]} [ignores] Configure the global ignore patterns
  * @property {import("eslint").Linter.Config[]} [configs] Additional configuration allowing to overwrite almost anything
  */
