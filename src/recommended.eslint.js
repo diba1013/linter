@@ -273,6 +273,12 @@ export function defineConfig({
 							order: "asc",
 						},
 					],
+
+					/**
+					 * Keep conventional asterix jsdoc since editor support is preferred.
+					 * https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/no-asterisk-prefix-in-documentation-comments.md
+					 */
+					"unicorn/no-asterisk-prefix-in-documentation-comments": "off",
 				},
 			},
 		}),
