@@ -51,7 +51,7 @@ export function defineCustomizedConfigurations({ customize: overwrite, configura
 export function defineConfig({
 	environment = "shared-node-browser",
 	root = process.cwd(),
-	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**"],
+	ignores = ["**/dist/**", "**/build/**", "**/.vscode/**", "**/coverage/**", "**/.pnpm-store/**"],
 	configs = [],
 } = {}) {
 	return [
