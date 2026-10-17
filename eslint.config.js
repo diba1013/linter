@@ -1,5 +1,6 @@
-import { defineLinterConfig } from "@diba1013/linter";
+import { defineConfig } from "@diba1013/linter/eslint";
 
-export default defineLinterConfig({
+// eslint-disable-next-line unicorn/no-top-level-side-effects
+export default defineConfig({
 	environment: "node",
 });

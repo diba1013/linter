@@ -31,8 +31,3 @@ export function defineConfig() {
 		],
 	};
 }
-
-/**
- * @type {import('prettier').Config}
- */
-export default defineConfig();

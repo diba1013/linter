@@ -1,3 +1,4 @@
-import { definePrettierConfig } from "@diba1013/linter";
+import { defineConfig } from "@diba1013/linter/prettier";
 
-export default definePrettierConfig();
+// eslint-disable-next-line unicorn/no-top-level-side-effects
+export default defineConfig();
